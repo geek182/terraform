@@ -10,7 +10,7 @@ resource "aws_security_group" "bastion-node" {
   }
 
   tags {
-    Name = "${var.tag_name}"
     System = "${var.tag_system}"
+    Name = "${var.tag_name}"
   }
 }
