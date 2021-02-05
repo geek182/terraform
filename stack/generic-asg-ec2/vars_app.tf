@@ -3,8 +3,8 @@ variable "name" {
 }
 
 variable "max_size"{
- default = 1 
-} 
+ default = 1
+}
 
 variable "min_size"{
  default = 1
@@ -26,6 +26,15 @@ variable  "key_name" {
  default = "test"
 }
 
-variable  "image_id"{
- default = "ami-0e4c9b46b89ddd90c" 
+variable  "ami_id"{
+ default = "ami-0e4c9b46b89ddd90c"
 }
+
+variable "instance_type" {
+ default = "t2.medium"
+}
+
+variable "vpc_security_group_ids" {
+ default = [""]
+}
+

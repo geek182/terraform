@@ -4,9 +4,9 @@ resource "aws_autoscaling_group" "generic-asg" {
  min_size                = "${var.min_size}"
  desired_capacity        = "${var.desired_capacity}"
  health_check_type       = "${var.hc_type}"
- launch_template         = { 
- id                      = "${aws_launch_template.generic_lc_template.id}" 
- version                 = "$$Latest"		 	    
+ launch_template         = {
+ id                      = "${aws_launch_template.generic_lc_template.id}"
+ version                 = "$$Latest"
 }
  vpc_zone_identifier     = ["${var.subnets}"]
 
@@ -15,6 +15,13 @@ resource "aws_autoscaling_group" "generic-asg" {
 resource "aws_launch_template" "generic_lc_template" {
  name                    = "lc-${var.name}"
  key_name                = "${var.key_name}"
- image_id                = "${var.image_id}"
- 
+ image_id                = "${var.ami_id}"
+ instance_type           = "${var.instance_type}"
+ vpc_security_group_ids  = "${var.vpc_security_group_ids}"
+ tag_specifications {
+  resource_type = "instance"
+  tags {
+   Name = "${var.name}"
+  }
+ }
 }
