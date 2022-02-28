@@ -9,5 +9,9 @@ output "availables_ad" {
 }
 
 output "images_to_use" {
-  value      =  data.oci_core_images.test_images.images[0]
+  value      =  data.oci_core_images.test_images.images
+}
+
+output "subnets" {
+  value  = data.oci_core_subnets.private_subnet.compartment_id
 }

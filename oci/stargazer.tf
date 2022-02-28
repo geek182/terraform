@@ -1,14 +1,3 @@
-#
-# UFP = United Federations of Planets founded at 2161
-#
-
-variable "compartment_description"{
-	type = string
-	default = "Picard's ship before the enterprise"
-}
-
-variable "ufp" {
-}
 
 ###
 # Compartment used for this DEMO
@@ -34,17 +23,14 @@ resource "oci_identity_compartment" "stargazer"{
 # Instances
 ##
 
-data "oci_identity_availability_domains" "ad" {
-    compartment_id = var.tenancy_ocid
 
-}
 
 resource "oci_core_instance" "stargazer-01" {
-    availability_domain =  data.oci_identity_availability_domains.ad.availability_domains[0].name
-    compartment_id =  oci_identity_compartment.stargazer.id
+    availability_domain =  data.oci_identity_availability_domains.ad.availability_domains[1].name
+    compartment_id =   oci_identity_compartment.stargazer.id
     shape = var.instance_shape
     create_vnic_details {
-	subnet_id = ""
+	subnet_id = data.oci_core_subnets.private_subnet.compartment_id
 	}
     source_details {
 	source_id =  data.oci_core_images.test_images.images[0].id
