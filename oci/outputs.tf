@@ -13,5 +13,5 @@ output "images_to_use" {
 }
 
 output "subnets" {
-  value  = data.oci_core_subnets.private_subnet.compartment_id
+  value  = data.oci_core_subnets.private_subnet.subnets[0].id
 }
