@@ -18,6 +18,23 @@ variable "region" {
 	type    = string
 }
 
+variable "quota_name" {
+	default = "Julius_Rock"
+	description = "Chris Rock's father"
+}
+
+variable "quota_description"{
+	default = "Unplug that clock, boy. You can't tell time while you sleep. That's two cents an hour."
+}
+
+variable "quota_statements" {
+	default = [
+		"set compute quota vm-dense-io2-8-count to 0 in tenancy",
+		 "set compute quota bm-standard1-36-count to 0 in tenancy",
+		 "set compute quota bm-standard-b1-44-count to 0 in tenancy",
+		 "set compute quota bm-standard2-52-count to 0 in tenancy",
+	]
+}
 #variable "compartment_ocid" {
 #}
 
