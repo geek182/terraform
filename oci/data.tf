@@ -25,3 +25,12 @@ data "oci_core_subnets" "private_subnet" {
     compartment_id = var.tenancy_ocid
     display_name = var.private_subnet
 }
+
+data "oci_core_subnets" "public_subnet" {
+    compartment_id = var.tenancy_ocid
+    display_name = var.public_subnet
+}
+
+data "oci_load_balancer_shapes" "lb_shapes" {
+    compartment_id = var.tenancy_ocid
+}

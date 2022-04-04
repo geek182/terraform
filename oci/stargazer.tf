@@ -48,6 +48,27 @@ resource "oci_core_instance" "stargazer-01" {
 # Load balance
 ##
 
-##
+resource "oci_load_balancer" "lb1" {
+  shape          = data.oci_load_balancer_shapes.lb_shapes.shapes[0].name # only LB shape available for free resources "flexible"
+  shape_details {
+    maximum_bandwidth_in_mbps = 10
+    minimum_bandwidth_in_mbps = 10
+  }
+  compartment_id = oci_identity_compartment.stargazer.id
+
+  subnet_ids = [
+    data.oci_core_subnets.public_subnet.subnets[0].id,
+  ]
+
+  display_name               = "lb_stargazer"
+  is_private                 = false
+  #network_security_group_ids = [oci_core_network_security_group.test_network_security_group.id]
+}
+
+#
+# Backend 
+#
+
+#
 # Security groups
-##
+#

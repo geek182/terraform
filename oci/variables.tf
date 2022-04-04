@@ -46,3 +46,6 @@ variable instance_shape {
 variable private_subnet{
 	default = "SB-10.0.1.0"
 }
+variable public_subnet{
+	default = "SBP-10.0.10.0"
+}

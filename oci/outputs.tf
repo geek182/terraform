@@ -15,3 +15,7 @@ output "images_to_use" {
 output "subnets" {
   value  = data.oci_core_subnets.private_subnet.subnets[0].id
 }
+
+output "lb_shapes" {
+  value = data.oci_load_balancer_shapes.lb_shapes.shapes[0].name
+}
