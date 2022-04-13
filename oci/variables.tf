@@ -49,3 +49,14 @@ variable private_subnet{
 variable public_subnet{
 	default = "SBP-10.0.10.0"
 }
+
+##
+# Stargazer variables
+# The USS Stargazer NCC-2893 was a Federation Constellation-class starship operated by Starfleet during the 23rd century
+##
+
+
+variable backend_stargazer_port {
+	description = "The listening port on the instance"
+	default     = 80
+}

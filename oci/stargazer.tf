@@ -65,9 +65,34 @@ resource "oci_load_balancer" "lb1" {
   #network_security_group_ids = [oci_core_network_security_group.test_network_security_group.id]
 }
 
+##
+# Load Balance set
+##
+
+resource "oci_load_balancer_backend_set" "loadbalance_set_stargazer" {
+  name             = "lbset_stargazer"
+  load_balancer_id = oci_load_balancer.lb1.id
+  policy           = "ROUND_ROBIN"
+
+  health_checker {
+    port                = "80"
+    protocol            = "HTTP"
+    url_path            = "/"
+    return_code         = "200"
+  }
+}
+
 #
-# Backend 
+# Load Balance backend 
 #
+
+resource "oci_load_balancer_backend" "backend_stargazer" {
+  #Required
+  backendset_name  = oci_load_balancer_backend_set.loadbalance_set_stargazer.name
+  ip_address       = oci_core_instance.stargazer-01.private_ip
+  load_balancer_id = oci_load_balancer.lb1.id
+  port             = var.backend_stargazer_port
+}
 
 #
 # Security groups
