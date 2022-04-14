@@ -48,7 +48,7 @@ resource "oci_core_instance" "stargazer-01" {
 # Load balance
 ##
 
-resource "oci_load_balancer" "lb1" {
+resource "oci_load_balancer" "loadbalance_stargazer" {
   shape          = data.oci_load_balancer_shapes.lb_shapes.shapes[0].name # only LB shape available for free resources "flexible"
   shape_details {
     maximum_bandwidth_in_mbps = 10
@@ -71,14 +71,14 @@ resource "oci_load_balancer" "lb1" {
 
 resource "oci_load_balancer_backend_set" "loadbalance_set_stargazer" {
   name             = "lbset_stargazer"
-  load_balancer_id = oci_load_balancer.lb1.id
+  load_balancer_id = oci_load_balancer.loadbalance_stargazer.id
   policy           = "ROUND_ROBIN"
 
   health_checker {
-    port                = "80"
-    protocol            = "HTTP"
-    url_path            = "/"
-    return_code         = "200"
+    port                = var.backendset_health_check["port"]
+    protocol            = var.backendset_health_check["protocol"]
+    url_path            = var.backendset_health_check["url"]
+    return_code         = var.backendset_health_check["return_code"]
   }
 }
 
@@ -90,7 +90,7 @@ resource "oci_load_balancer_backend" "backend_stargazer" {
   #Required
   backendset_name  = oci_load_balancer_backend_set.loadbalance_set_stargazer.name
   ip_address       = oci_core_instance.stargazer-01.private_ip
-  load_balancer_id = oci_load_balancer.lb1.id
+  load_balancer_id = oci_load_balancer.loadbalance_stargazer.id
   port             = var.backend_stargazer_port
 }
 

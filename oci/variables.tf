@@ -55,6 +55,15 @@ variable public_subnet{
 # The USS Stargazer NCC-2893 was a Federation Constellation-class starship operated by Starfleet during the 23rd century
 ##
 
+variable "backendset_health_check" {
+  type = map(string)
+  default =  {
+	  port = "80"
+      url = "/"
+      protocol = "HTTP"
+	  return_code = "200"
+    }
+}
 
 variable backend_stargazer_port {
 	description = "The listening port on the instance"
