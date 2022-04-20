@@ -34,3 +34,23 @@ data "oci_core_subnets" "public_subnet" {
 data "oci_load_balancer_shapes" "lb_shapes" {
     compartment_id = var.tenancy_ocid
 }
+
+##
+# Install required software
+##
+
+data "template_file" "cloud-config" {
+  template = <<YAML
+#cloud-config
+runcmd:
+ - echo 'This instance was provisioned by Terraform.' >> /etc/motd
+ - sudo yum install nginx curl -y
+ - sudo systemctl enable --now nginx
+ - sudo netstat -ntpl
+ - sudo systemctl status nginx
+ - curl -Iv http://localhost
+ - firewall-offline-cmd --add-port=80/tcp
+ - systemctl enable  firewalld
+ - systemctl restart  firewalld
+YAML
+}

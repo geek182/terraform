@@ -19,3 +19,7 @@ output "subnets" {
 output "lb_shapes" {
   value = data.oci_load_balancer_shapes.lb_shapes.shapes[0].name
 }
+
+output "lb_public_ip" {
+  value = oci_load_balancer.loadbalance_stargazer.ip_address_details
+}

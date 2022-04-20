@@ -33,6 +33,9 @@ resource "oci_core_instance" "stargazer-01" {
     availability_domain =  data.oci_identity_availability_domains.ad.availability_domains[1].name
     compartment_id =   oci_identity_compartment.stargazer.id
     shape = var.instance_shape
+    metadata = {
+    user_data = "${base64encode(data.template_file.cloud-config.rendered)}"
+  }
     create_vnic_details {
 	#subnet_id = data.oci_core_subnets.private_subnet.compartment_id
     subnet_id = data.oci_core_subnets.private_subnet.subnets[0].id #subnets - The list of subnets.
@@ -81,6 +84,27 @@ resource "oci_load_balancer_backend_set" "loadbalance_set_stargazer" {
     return_code         = var.backendset_health_check["return_code"]
   }
 }
+##
+# Load Balance Listerner
+##
+
+resource "oci_load_balancer_listener" "load_balancer_listener_stargazer" {
+  load_balancer_id         = oci_load_balancer.loadbalance_stargazer.id
+  name                     = "http"
+  default_backend_set_name = oci_load_balancer_backend_set.loadbalance_set_stargazer.name
+  #hostname_names           = [oci_load_balancer_hostname.test_hostname1.name]
+  port                     = 80
+  protocol                 = "HTTP"
+  #rule_set_names           = [oci_load_balancer_rule_set.test_rule_set.name]
+
+  connection_configuration {
+    idle_timeout_in_seconds = "240"
+  }
+}
+
+##
+# Routing policies
+##
 
 #
 # Load Balance backend 
@@ -94,6 +118,18 @@ resource "oci_load_balancer_backend" "backend_stargazer" {
   port             = var.backend_stargazer_port
 }
 
+##
+# Enable log for Load balance
+##
+
 #
 # Security groups
 #
+
+##
+# SG Load balance
+##
+
+##
+# SG Instance
+##
