@@ -10,7 +10,7 @@ provider "oci" {
 
 and inside the oci file ~/.oci/config
 
-```YAML
+```
 [DEFAULT]
 user=ocid1.user.oc1..<unique_ID>
 fingerprint=<your_fingerprint>
@@ -20,6 +20,7 @@ region=us-ashburn-1
 
 ```
 
+```
 [ADMIN_USER]
 user=ocid1.user.oc1..<unique_ID>
 fingerprint=<your_fingerprint>
