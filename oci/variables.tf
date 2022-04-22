@@ -30,6 +30,7 @@ variable "compartment_description"{
 	default = "Picard's ship before the enterprise"
 }
 
+# The value to this variable is coming from the environment variables "TF_VAR_ufp"
 variable "ufp" {
 }
 
