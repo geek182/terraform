@@ -1,5 +1,5 @@
 
-##profile configuration
+## profile configuration
 
 ```
 provider "oci" {
@@ -10,7 +10,7 @@ provider "oci" {
 
 and inside the oci file ~/.oci/config
 
-```
+```YAML
 [DEFAULT]
 user=ocid1.user.oc1..<unique_ID>
 fingerprint=<your_fingerprint>
