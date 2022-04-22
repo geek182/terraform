@@ -16,6 +16,10 @@ variable "private_key_password"{
 variable "pre_auth_token_network" {
 }
 
+variable "config_file_profile" {
+
+}
+
 variable "region" {
 	default = "us-ashburn-1"
 	type    = string
@@ -52,7 +56,7 @@ variable sg_private_subnet {
 }
 
 variable sg_public_subnet {
-    default = "Security Group Public Subnet"
+    default = "Security Group Public_Subnet"
 }
 
 variable internet_gateway_name {
