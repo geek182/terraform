@@ -1,35 +1,39 @@
-variable "tenancy_ocid" {
-}
+##
+# I'm using OCI config profile then those common variables for the provider are being provider there.
+##
 
-variable "user_ocid" {
-}
+# variable "region" {
+# 	default = "us-ashburn-1"
+# 	type    = string
+# }
 
-variable "fingerprint" {
-}
+# variable "tenancy_ocid" {
+# }
 
-variable "private_key_path" {
-}
+# variable "user_ocid" {
+# }
 
-variable "private_key_password"{
-}
+# variable "fingerprint" {
+# }
 
-variable "pre_auth_token_network" {
-}
+# variable "private_key_path" {
+# }
 
-variable "config_file_profile" {
+# variable "private_key_password"{
+# }
 
-}
+# variable "pre_auth_token_network" {
+# }
 
-variable "region" {
-	default = "us-ashburn-1"
-	type    = string
-}
+ variable "config_file_profile" {
+
+ }
 
 # The value to this variable is coming from the environment variables "TF_VAR_root_compartment"
 
-variable root_compartment {
-
-}
+ variable root_compartment {
+     
+ }
 
 variable network_compartment_description {
     default = "Network components"

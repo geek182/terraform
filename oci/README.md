@@ -18,9 +18,6 @@ key_file=~/.oci/oci_api_key.pem
 tenancy=ocid1.tenancy.oc1..<unique_ID>
 region=us-ashburn-1
 
-```
-
-```
 [ADMIN_USER]
 user=ocid1.user.oc1..<unique_ID>
 fingerprint=<your_fingerprint>
@@ -40,3 +37,5 @@ or leave blank for using the default profile
 terraform plan -var config_file_profile=""
 
 ```
+
+[Useful url for configuring OCI provider](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/terraformproviderconfiguration.htm#configuring_the_terraform_provider)
