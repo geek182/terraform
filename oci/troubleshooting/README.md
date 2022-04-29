@@ -1,4 +1,4 @@
-## The error below was caused because I was refering a component(subnet_id) that didn't exist, the OCID was wrong :(
+### The error below was caused because I was refering a component(subnet_id) that didn't exist, the OCID was wrong :(
 
 ```
 │ Error: 404-NotAuthorizedOrNotFound 
