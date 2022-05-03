@@ -4,3 +4,10 @@
 #    – Jean-Luc Picard
 #
 
+##
+# Objective:
+# - Create our first resource
+# - Creating variables
+# - Using variables
+# - Terraform flows
+##
