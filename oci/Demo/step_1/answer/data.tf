@@ -24,12 +24,11 @@ data "template_file" "cloud-config" {
   template = <<YAML
 #cloud-config
 runcmd:
- - echo 'This instance was provisioned by Terraform.' >> /etc/motd
  - sudo yum install nginx curl -y
  - sudo systemctl enable --now nginx
- - sudo netstat -ntpl
  - sudo systemctl status nginx
- - curl -Iv http://localhost
+ - sudo rm /usr/share/nginx/html/index.html
+ - echo '<html><head><title> DEMO for the Guild </title></head><body><center><h1><b>To boldy go where no one has gone before</b></h1></center></body></html>' >> /usr/share/nginx/html/index.html
  - firewall-offline-cmd --add-port=80/tcp
  - systemctl enable  firewalld
  - systemctl restart  firewalld
