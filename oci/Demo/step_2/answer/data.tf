@@ -13,5 +13,6 @@ data "oci_core_subnets" "public_subnet" {
 }
 data "oci_core_images" "oracle_images" {
     compartment_id = var.tenancy_ocid
-    display_name = "Oracle-Linux-8.5-2022.01.24-0"
+    #display_name = "Oracle-Linux-8.5-2022.01.24-0"
+    display_name = "Oracle-Linux-8.5-2022.04.26-0"
 }
